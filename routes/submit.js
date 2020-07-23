@@ -1,9 +1,17 @@
+const mongoose = require('mongoose');
 const express = require('express');
-var router = express.Router();
+const router = express.Router();
+const ideaController = require('../controllers/ideas.js');
 
 router.post('/', (req, res) => {
-    console.log('ok');
-    res.send(200);
+    ideaController.saveIdea(req, res, function(error){
+        if(error) {
+            res.sendStatus(400);
+          } else {
+            res.sendStatus(200);
+        }
+        mongoose.connection.close();
+    })
 })
 
 module.exports = router;
