@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv').config();
 const submitRoute = require('./routes/submit.js');
+const mainRoute = require('./routes/main.js');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
@@ -15,5 +16,6 @@ app.use(cors());
 const port = process.env.PORT || 3001;
 
 app.use('/submit', submitRoute);
+app.use('/', mainRoute);
 
 app.listen(port);

@@ -6,7 +6,8 @@ exports.saveIdea = function(req, res, next) {
         title: req.body.title,
         description: req.body.description,
         tags: req.body.tags,
-        likes: 0
+        likes: 0,
+        postedAt: Date.now()
     });
 
     idea.save(function (error, idea) {
@@ -17,6 +18,19 @@ exports.saveIdea = function(req, res, next) {
             });
           } else {
               next(null);
+          }
+      });
+}
+
+exports.getIdeas = function(req, res, next) {
+    ideaModel.find(function (error, idea) {
+        if (error) {
+            next({
+              status: "error",
+              message: error
+            }, null);
+          } else {
+              next(null, idea);
           }
       });
 }
