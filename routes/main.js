@@ -12,4 +12,7 @@ router.get('/', (req, res) => {
     })
 })
 
+router.put('/', (req, res) => {
+    ideaController.incrementLike(req, res);
+})
 module.exports = router;

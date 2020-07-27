@@ -34,3 +34,11 @@ exports.getIdeas = function(req, res, next) {
           }
       });
 }
+
+exports.incrementLike = async function(req, res) {
+    const { ideaID, increment } = req.body;
+    const doc = await ideaModel.findById(ideaID).exec();
+    doc.likes += increment;
+    await doc.save();
+
+}
