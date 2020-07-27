@@ -5,11 +5,12 @@ const ideaController = require('../controllers/ideas.js');
 
 router.get('/', (req, res) => {
     // console.log(req.query[0]);
-    ideaController.getIdeas(req, res, function(error, ideas){
+    
+    ideaController.getIdeas(req, res, function(error, idea){
         if(error) {
             console.log("ih deu merda");
         } else {
-            res.send(ideas);
+            res.send(idea);
         }
     })
 })

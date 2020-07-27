@@ -15,9 +15,9 @@ exports.saveIdea = function(req, res, next) {
             next({
               status: "error",
               message: error
-            });
+            }, null);
           } else {
-              next(null);
+              next(null, idea);
           }
       });
 }
@@ -26,9 +26,9 @@ exports.getIdeas = function(req, res, next) {
     ideaModel.find(function (error, idea) {
         if (error) {
             next({
-              status: "error",
-              message: error
-            }, null);
+                status: "error",
+                message: error
+            });
           } else {
               next(null, idea);
           }

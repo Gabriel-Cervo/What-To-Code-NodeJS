@@ -4,13 +4,12 @@ const router = express.Router();
 const ideaController = require('../controllers/ideas.js');
 
 router.post('/', (req, res) => {
-    ideaController.saveIdea(req, res, function(error){
+    ideaController.saveIdea(req, res, function(error, idea){
         if(error) {
-            res.sendStatus(400);
+            console.log('erro');
           } else {
-            res.sendStatus(200);
+            res.send(idea);
         }
-        mongoose.connection.close();
     })
 })
 
